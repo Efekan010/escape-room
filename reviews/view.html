@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alle reviews – The Dark House</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<div class="page">
+  <a href="../index.html" class="back-link">← Terug naar de ingang</a>
+  <a href="../review.html" class="back-link" style="margin-left: 16px;">★ Nieuwe review</a>
+
+  <div class="admin-header">
+    <h1>★ Alle reviews ★</h1>
+    <p>Wat vonden andere spelers van The Dark House?</p>
+  </div>
+
+  <div id="reviewsContainer" class="reviews-list">
+    <!-- reviews worden hier geladen -->
+  </div>
+</div>
+
+<script>
+  function loadReviews() {
+    const container = document.getElementById('reviewsContainer');
+    const reviews = JSON.parse(localStorage.getItem('darkHouseReviews') || '[]');
+    
+    if (reviews.length === 0) {
+      container.innerHTML = '<div class="empty-state">Nog geen reviews. <a href="../review.html">Wees de eerste! ★</a></div>';
+      return;
+    }
+    
+    let html = '';
+    for (let rev of reviews) {
+      const starsFull = '★'.repeat(rev.rating);
+      const starsEmpty = '☆'.repeat(5 - rev.rating);
+      const diffStars = '●'.repeat(rev.difficulty) + '○'.repeat(5 - rev.difficulty);
+      
+      html += `
+        <div class="review-card">
+          <div class="review-header">
+            <span class="team-name">👥 ${escapeHtml(rev.teamName)}</span>
+            <span class="room-badge">${escapeHtml(rev.room)}</span>
+            <span class="review-date">${escapeHtml(rev.date)}</span>
+          </div>
+          <div class="review-stars">${starsFull}${starsEmpty}</div>
+          <div class="review-difficulty">💀 Moeilijkheid: ${diffStars}</div>
+          <div class="review-feedback">“${escapeHtml(rev.feedback)}”</div>
+        </div>
+      `;
+    }
+    container.innerHTML = html;
+  }
+  
+  function escapeHtml(str) {
+    return str.replace(/[&<>]/g, function(m) {
+      if (m === '&') return '&amp;';
+      if (m === '<') return '&lt;';
+      if (m === '>') return '&gt;';
+      return m;
+    });
+  }
+  
+  loadReviews();
+</script>
+
+</body>
+</html>

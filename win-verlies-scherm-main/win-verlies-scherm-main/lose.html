@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Dark House – Gevangen</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <div id="flash"></div>
+
+  <div id="jumpscare">
+    <img id="scare-img" src="jumpscare.jpg" alt="Jumpscare">
+    <div class="scare-text">IK ZIE JOU</div>
+    <div class="close-hint" onclick="closeJumpscare()">✕ doorgaan</div>
+  </div>
+
+  <section class="lose-card">
+    <div class="chains">
+      <div class="chain-link"></div>
+      <div class="chain-link"></div>
+      <div class="chain-link"></div>
+      <div class="chain-link"></div>
+      <div class="chain-link"></div>
+      <div class="chain-link"></div>
+      <div class="chain-link"></div>
+    </div>
+
+    <h1>Je bent vastgezet…</h1>
+
+    <p class="sub">
+      Er is geen ontsnapping.<br>
+      De muren sluiten in.<br>
+      Iets ademt in het donker.
+    </p>
+
+    <div class="countdown-wrap">
+      <p class="countdown-label">aankomst over</p>
+      <div class="bar-track">
+        <div class="bar-fill"></div>
+      </div>
+    </div>
+
+    <a href="index.html" class="btn-retry">← Probeer opnieuw</a>
+  </section>
+
+  <script src="js/lose.js"></script>
+</body>
+</html>
